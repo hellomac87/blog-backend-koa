@@ -9,8 +9,8 @@
   "devDependencies": {
     "nodemon": "^1.18.4"
   },
-  "script": {
+  "scripts": {
     "start": "node src",
-    "start:dve": "nodemon --watch src/ src/index.js"
+    "start:dev": "nodemon --watch src/ src/index.js"
   }
 }

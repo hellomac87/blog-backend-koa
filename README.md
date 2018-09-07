@@ -68,9 +68,10 @@ pakage.json 수정
 
 script 객체 추가
 ```json
-"script": {
+...
+"scripts": {
     "start": "node src",
-    "start:dve": "nodemon --watch src/ src/index.js"
+    "start:dev": "nodemon --watch src/ src/index.js"
   }
 ```
 실행 명령어
