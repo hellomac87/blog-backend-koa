@@ -5,5 +5,12 @@
   "license": "MIT",
   "dependencies": {
     "koa": "^2.5.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  },
+  "script": {
+    "start": "node src",
+    "start:dve": "nodemon --watch src/ src/index.js"
   }
 }
