@@ -59,4 +59,23 @@ listening to port 4000!
 bye
 ```
 
+### Nodemon 사용
+설치
+```terminal
+$yarn add --dev nodemon
+```
+pakage.json 수정
+
+script 객체 추가
+```json
+"script": {
+    "start": "node src",
+    "start:dve": "nodemon --watch src/ src/index.js"
+  }
+```
+실행 명령어
+```terminal
+$yarn start
+$yarn start:dev
+```
 ---
