@@ -18,7 +18,7 @@ exports.write = (ctx) => {
     const {
         title,
         body
-    } = ctx.requrest.body;
+    } = ctx.request.body;
 
     postId += 1;  // 기존 postId 값에 1을 더한다.
     
@@ -27,7 +27,6 @@ exports.write = (ctx) => {
         title,
         body 
     };
-
     posts.push(post)
 }
 
@@ -128,7 +127,7 @@ exports.update = (ctx) => {
     const { id } = ctx.params;
 
     // 해당 id 를 가진 post가 몇 번쨰인지 확인합니다.
-    const index = posts.findeIndex(p => p.id.toString === id);
+    const index = posts.findIndex(p => p.id.toString() === id);
 
     // 포스트가 없으면 오류를 반환합니다.
     if (!index) {
@@ -138,13 +137,12 @@ exports.update = (ctx) => {
         }
         return;
     };
-
+    console.log('before', posts[index]);
     // 기존 값에 정보를 덮어 씌웁니다.
     posts[index] = {
         ...posts[index],
-        ...posts.requrest.body
+        ...ctx.request.body
     };
-
     ctx.body = posts[index];
-
-}
+    console.log('after', posts[index]);
+};
