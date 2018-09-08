@@ -151,3 +151,7 @@ app.listen(4000, () => {
 | POST/posts/:id/comments | 특정 포스트에 덧글 등록 |
 | GET/posts/:id/comments | 특정 포스트의 덧글 목록 조호 |
 | DELETE/posts/:id/comments/:commentId | 특정 포스트의 특정 덧글 삭제 |
+
+### 라우트 모듈화
+---
+
