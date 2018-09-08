@@ -153,5 +153,35 @@ app.listen(4000, () => {
 | DELETE/posts/:id/comments/:commentId | 특정 포스트의 특정 덧글 삭제 |
 
 ### 라우트 모듈화
+src/api/index.js
+```js
+const Router = require('koa-router');
+const api = new Router();
+
+api.get('/test', (ctx) => {
+    ctx.body = 'test';
+});
+// 라우터 내보내기
+module.exports = api;
+```
+
+src/index.js
+```js
+const Koa = require('koa');
+const Router = require('koa-router');
+
+const app = new Koa();
+const router = new Router();
+
+// 라우터 설정
+router.use('./api', api.routes()); // api 라우트 적용
+
+// app 인스턴스에 라우터 적용
+app.use(router.routes()).use(router.allowedMethods());
+
+app.listen(4000, () => {
+    console.log('listening to port 4000!');
+})
+```
 ---
 
