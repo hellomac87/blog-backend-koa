@@ -33,13 +33,7 @@ app.use((ctx, next) => {
     });
 });
 ```
-result :
-```terminal
-listening to port 4000!
-1
-2
-bye
-```
+
 #### async/await 사용
 Koa는 async/await 정식 지원.
 
@@ -50,13 +44,6 @@ app.use(async (ctx, next) => {
     await next();
     console.log('bye');
 });
-```
-result :
-```terminal
-listening to port 4000!
-1
-2
-bye
 ```
 
 ### Nodemon 사용
