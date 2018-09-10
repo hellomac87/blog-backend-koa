@@ -172,3 +172,67 @@ app.listen(4000, () => {
 ```
 ---
 
+## MongoDB
+> MongoD란 문서 지향적 NoSQL 데이터베이스
+- 유동적인 schema를 지닐 수 있음
+- 새로 등록해야 할 데이터 형식이 다르더라도, 기존 데이터를 수정할 필요 없음
+
+### 문서(Document)란?
+- RDBMS의 record와 비슷한 개념
+- 문서의 데이터 구조는 한개 이상의 'key-value' 쌍으로 되어 있음
+- 예시
+```json
+{
+    "_id": ObjectId("5099803df3f4948bd2f98391"),
+    "username": "velopert",
+    "name": { first: "M.J.", last: "Kim" }
+}
+```
+- 문서는 BSON(바이너리 형태의 JSON) 형태로 저장
+- 나중에 JSON 형태의 객체를 데이터베이스에 저장 할 때 편리함
+- 새로운 문서를 만들면 _id 라는 고유 값을 자동으로 생성.
+- MongoDB는 다른 스키마를 갖고 있는 문서들이 한 컬렉션에서 공존 할 수 있음
+```json
+{
+    "_id": ObjectId("5099803df3f4948bd2f98391"),
+    "username": "velopert",
+    "name": { first: "M.J.", last: "Kim" }
+}
+{
+    "_id": ObjectId("5099803df3f4948bd2f98391"),
+    "username": "velopert2",
+    "name": { first: "A.J.", last: "Nam" },
+    "phone":"010-0000-0000"
+}
+```
+### mongoose
+설치
+```terminal
+$yarn add mongoose dotenv
+```
+- env는 환경 변수들을 파일에 넣고 사용할 수 있게 하는 개발도구이다.
+```
+PORT=4000
+MOGO_URI=mongodb://localhost/blog
+```
+- process.env 로 조회 가능
+
+src/index.js
+```js
+require('dotenv').config();
+
+(...)
+
+const {
+    PORT : port = 4000, //값이 존재하지 않는다면 4000 을 기본 값으로 사용
+    MONGO_URI : mongoURI,
+} = process.env;
+
+mongoose.Promise = global.Promise; // Node의 Promise를 사용하도록 설정
+mongoose.connect(mongoURI).then(() => {
+    console.log('connected to mongodb');
+}).catch((e) => {
+    console.log(e);
+})
+```
+---
