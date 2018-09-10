@@ -69,6 +69,11 @@ exports.list = async(ctx) => {
             .limit(10)
             .skip((page - 1) * 10)
             .exec();
+        
+        const postCount = await Post.count().exec();
+        // 마지막 페이지 알려 주기
+        // ctx.set 은 request header 를 설정
+        ctx.set('Last-Page', Math.ceil(postCount / 10));
                                 
         ctx.body = posts;
     }catch(e){
