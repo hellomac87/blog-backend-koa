@@ -35,9 +35,11 @@ const sessionConfig = {
     maxAge : 86400000, // 하루
     // signed: true
 }
+app.use(session(sessionConfig, app));
+app.keys = [signKey];
 // app 인스턴스에 라우터 적용
 app.use(router.routes()).use(router.allowedMethods());
-app.keys = [signKey];
+
 
 app.listen(port, () => {
     console.log('listening to port',port);
